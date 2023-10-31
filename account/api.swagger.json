@@ -1,0 +1,498 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "api.proto",
+        "version": ""
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/account/AccountRoleList": {
+            "post": {
+                "summary": "/account/AccountRoleList",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.account.AccountRoleListRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.account.AccountRoleListReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "account.Account"
+                ]
+            }
+        },
+        "/account/GetPlayerInfo": {
+            "post": {
+                "summary": "获取玩家详情",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.account.GetPlayerInfoRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.account.GetPlayerInfoReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "account.Account"
+                ]
+            }
+        },
+        "/account/KickPlayer": {
+            "post": {
+                "summary": "踢玩家下线",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.account.KickPlayerRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.account.KickPlayerReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "account.Account"
+                ]
+            }
+        },
+        "/account/LockAccount": {
+            "post": {
+                "summary": "封号",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.account.LockAccountRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.account.LockAccountReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "account.Account"
+                ]
+            }
+        },
+        "/account/LockList": {
+            "post": {
+                "summary": "封号记录",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.account.LockListRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.account.LockListReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "account.Account"
+                ]
+            }
+        },
+        "/account/UserDisable": {
+            "post": {
+                "summary": "/account/UserDisable",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "message": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/.account.UserDisableRsp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.account.UserDisableReq"
+                        }
+                    }
+                ],
+                "tags": [
+                    "account.Account"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        ".account.AccountRole": {
+            "type": "object",
+            "properties": {
+                "ServerID": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                },
+                "Name": {
+                    "type": "string"
+                },
+                "Level": {
+                    "type": "integer"
+                },
+                "HeadID": {
+                    "type": "integer"
+                },
+                "FrameID": {
+                    "type": "integer"
+                },
+                "Sex": {
+                    "type": "integer"
+                },
+                "LogoutTime": {
+                    "type": "integer"
+                },
+                "DisabledTime": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".account.AccountRoleListReq": {
+            "type": "object",
+            "properties": {
+                "SDKAccountId": {
+                    "type": "string"
+                },
+                "SdkToken": {
+                    "type": "string"
+                },
+                "PlatformID": {
+                    "type": "integer"
+                },
+                "ChannelID": {
+                    "type": "integer"
+                }
+            },
+            "description": "拉取SDK-uuid对应的角色列表"
+        },
+        ".account.AccountRoleListRsp": {
+            "type": "object",
+            "properties": {
+                "List": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.account.AccountRole"
+                    }
+                },
+                "AccountToken": {
+                    "type": "string"
+                }
+            }
+        },
+        ".account.GetPlayerInfoReq": {
+            "type": "object",
+            "properties": {
+                "PlayerId": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "PlayerName": {
+                    "type": "string"
+                }
+            },
+            "description": "获取玩家详情信息"
+        },
+        ".account.GetPlayerInfoRsp": {
+            "type": "object",
+            "properties": {
+                "List": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.account.Player"
+                    }
+                }
+            },
+            "description": "玩家详情"
+        },
+        ".account.KickPlayerReq": {
+            "type": "object",
+            "properties": {
+                "Account": {
+                    "type": "string"
+                },
+                "PlayerId": {
+                    "type": "integer"
+                }
+            },
+            "description": "踢玩家线下"
+        },
+        ".account.KickPlayerRsp": {
+            "type": "object",
+            "properties": {}
+        },
+        ".account.LockAccountReq": {
+            "type": "object",
+            "properties": {
+                "Account": {
+                    "type": "string"
+                },
+                "UserId": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "EndTime": {
+                    "type": "integer"
+                },
+                "Type": {
+                    "type": "integer"
+                }
+            },
+            "description": "封号请求"
+        },
+        ".account.LockAccountRsp": {
+            "type": "object",
+            "properties": {}
+        },
+        ".account.LockItem": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "string"
+                },
+                "EndTime": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".account.LockListReq": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "type": "integer"
+                },
+                "Offset": {
+                    "type": "integer"
+                },
+                "Limit": {
+                    "type": "integer"
+                },
+                "UserId": {
+                    "type": "integer"
+                },
+                "Account": {
+                    "type": "string"
+                }
+            },
+            "description": "封号记录查询"
+        },
+        ".account.LockListRsp": {
+            "type": "object",
+            "properties": {
+                "List": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/.account.LockItem"
+                    }
+                },
+                "TotalCount": {
+                    "type": "integer"
+                }
+            },
+            "description": "封号记录查询"
+        },
+        ".account.Player": {
+            "type": "object",
+            "properties": {
+                "OS": {
+                    "type": "integer"
+                },
+                "WarZone": {
+                    "type": "integer"
+                },
+                "Server": {
+                    "type": "integer"
+                },
+                "Account": {
+                    "type": "string"
+                },
+                "LoginType": {
+                    "type": "integer"
+                },
+                "PlayerId": {
+                    "type": "integer"
+                },
+                "PlayerName": {
+                    "type": "string"
+                },
+                "Mobile": {
+                    "type": "string"
+                },
+                "Level": {
+                    "type": "integer"
+                },
+                "VipLevel": {
+                    "type": "integer"
+                },
+                "Recharge": {
+                    "type": "integer"
+                },
+                "RegTime": {
+                    "type": "integer"
+                },
+                "LastLoginTime": {
+                    "type": "integer"
+                },
+                "LastLoginIp": {
+                    "type": "string"
+                },
+                "Online": {
+                    "type": "boolean"
+                },
+                "LockTime": {
+                    "type": "integer"
+                }
+            }
+        },
+        ".account.UserDisableReq": {
+            "type": "object",
+            "properties": {
+                "UserID": {
+                    "type": "integer"
+                },
+                "DisabledTime": {
+                    "type": "integer"
+                },
+                "Tips": {
+                    "type": "string"
+                }
+            }
+        },
+        ".account.UserDisableRsp": {
+            "type": "object",
+            "properties": {
+                "UserID": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

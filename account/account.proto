@@ -1,0 +1,181 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+//import "google/api/annotations.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package account;
+
+// NOTE: 最后请删除这些无用的注释 (゜-゜)つロ
+
+option go_package = "xy3-proto/account;v1";
+option (gogoproto.goproto_getters_all) = false;
+
+message HelloReq {
+  string Name = 1 [(gogoproto.moretags) = 'form:"name" validate:"required"'];
+}
+
+message HelloResp {
+  string Content = 1 [(gogoproto.jsontag) = 'content'];
+}
+
+message AccountRole {
+    int32 ServerID              = 1;
+    int64 UserID                = 2;
+    string Name                 = 3;
+    int32 Level                 = 4;
+    int32 HeadID                = 5;
+    int32 FrameID               = 6;
+    int32 Sex                   = 7;
+    int64 LogoutTime            = 8;
+    int64 DisabledTime          = 9; //封号到该时间戳
+}
+
+message ServerPlayerNum {
+    int32 ServerID              = 1;
+    int32 PlayerNum             = 2;
+}
+
+//拉取SDK-uuid对应的角色列表
+message AccountRoleListReq {
+    string SDKAccountId         = 1;
+    string SdkToken             = 2;
+    int32 PlatformID            = 3; //平台 0 默认 100-火元素内部测试
+    int32 ChannelID             = 4; //渠道ID 0 默认渠道 100-火元素内部测试
+}
+
+message AccountRoleListRsp {
+    repeated AccountRole List = 1;
+    string AccountToken = 2;
+    repeated ServerPlayerNum ServerPlayerNumList = 3;
+    int64 DeleteTime = 4; //账户注销时间戳 0 表示不限制， 其他表示截至时间戳 账户将会注销 请用户核查,并取消
+}
+
+message UserDisableReq {
+    int64 UserID                = 1;
+    int64 DisabledTime          = 2; //从现在起封号到DisabledTime时间点
+    string Tips                 = 3; //封号理由
+}
+message UserDisableRsp {
+    int64 UserID                = 1;
+}
+
+//
+enum LockType {
+    LT_Invalid = 0 ;
+    LT_Lock = 1;  // 封禁
+    LT_UnLock = 2;  // 解封
+}
+
+// 封号请求
+message LockAccountReq {
+    string Account = 1; // 账号
+    repeated int64 UserId = 2; // 玩家id   Account || UserId 只用传入一个即可
+    int64 EndTime = 3; // 截至时间
+    LockType Type = 4;
+}
+
+message LockAccountRsp {
+}
+
+// 查询封号列表类型
+enum LockListType {
+    LLT_Invalid = 0;
+    LLT_Account = 1; // 账号
+    LLT_UserId = 2; // 玩家角色
+}
+// 封号记录查询
+message LockListReq {
+    LockListType Type = 1;
+    int32 Offset = 2;
+    int32 Limit = 3;       // 最大返回100条
+    int64 UserId = 4;       // 用于指定 userid查询
+    string Account = 5;     // 用于指定 账户 查询
+}
+
+message LockItem {
+    string Id = 1; // 兼容UserId 和Account
+    int64 EndTime = 2; // 请求方主动判断 endTime <> time.Now()?  是否处于被封号中
+}
+
+// 封号记录查询
+message LockListRsp {
+    repeated LockItem List = 1;
+    int64 TotalCount = 2;
+}
+
+// 踢玩家线下
+message KickPlayerReq {
+    string Account = 1; // 当account不为空时， 踢账号下所有玩家
+    int64 PlayerId = 2;  // 指定userid 只踢 该玩家
+}
+
+message KickPlayerRsp {
+}
+
+// 获取玩家详情信息
+message GetPlayerInfoReq {
+    repeated int64 PlayerId = 1;  // 玩家id  最多查询十个
+    string PlayerName = 2; // 玩家名称  两者发送一个即可， 优先玩家id
+}
+
+// 登录方式
+enum LoginType {
+    LT = 0 ; // 无效
+    LT_Guest = 1; //游客登录
+    LT_Email = 2; //邮箱登录
+    LT_Apple = 3; //苹果登录
+    LT_Facebook = 4; //facebook登录
+    LT_Google = 5; //google登录
+    LT_Phone = 6; //手机登录
+}
+
+// 玩家详情
+message GetPlayerInfoRsp {
+    repeated Player List = 1;
+}
+
+message Player {
+    int32 OS = 1;			// 平台
+    int32 WarZone = 2; // 战区
+    int32 Server = 3; // 服务器id
+    string Account = 4; // 账户
+    LoginType	LoginType = 5; // 登录方式  (暂定)
+    int64 PlayerId = 6; // 玩家id
+    string PlayerName = 7; // 玩家名称
+    string Mobile = 8; // 手机号 				(暂定)
+    int32 Level = 9; // 等级
+    int32 VipLevel = 10; // vip等级			(暂定)
+    int32 Recharge = 11; // 总充值				(暂定)
+    int64 RegTime = 12; // 注册时间
+    int64 LastLoginTime = 13; // 最有一次登录
+    string LastLoginIp = 14; // 最后一次登录ip
+    bool Online = 15; // 是否在线
+    int64 LockTime = 16; // 封号截至时间
+    string Email = 17;        // 邮件
+    string Imei = 18;        //
+    string Apple = 19;        //
+    string Facebook = 20;     //
+    string Google = 21;       //
+}
+
+// 获取玩家仙人信息
+message GetPlayerHeroInfoReq {
+    int64 PlayerId = 1;  // 玩家id
+}
+
+message HeroInfo {
+    int32 Id = 1;              // 仙人id
+    int32 Quality = 2;         // 品质
+    int32 Star = 3;            // 星级
+    int32 Fragments = 4;       // 仙人碎片数量
+    int32 Awaken = 5;          // 觉醒次数
+}
+
+// 玩家仙人详情
+message GetPlayerHeroInfoRsp {
+    repeated HeroInfo List = 1;
+}

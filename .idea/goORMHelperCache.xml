@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GoORMHelperCache">
+    <option name="schemaMapping">
+      <map>
+        <entry key="AttributeValue">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/config/monster/monsterAttributeValue.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Monster">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/config/monster/monster.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="TestProto">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/main.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="globalConfig">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/config/global/global.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="monsterAttributeValueConfig">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/config/monster/monsterAttributeValue.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="monsterConfig">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/config/monster/monster.go" />
+            </set>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="scannedPathMapping">
+      <map>
+        <entry key="file://$PROJECT_DIR$/generate.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1698738894788" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1698738400732" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../work/xy3-server/platform/internal/data/account.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1698724673798" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/config/global/global.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1698660583447" />
+              <option name="schema">
+                <list>
+                  <option value="globalConfig" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/config/monster/monster.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1698721450603" />
+              <option name="schema">
+                <list>
+                  <option value="monsterConfig" />
+                  <option value="Monster" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/config/monster/monsterAttributeValue.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1698716642555" />
+              <option name="schema">
+                <list>
+                  <option value="monsterAttributeValueConfig" />
+                  <option value="AttributeValue" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/logic/system/lineup/fairywareHandler.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1698660931559" />
+            </ScannedPath>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="tableStructMapping">
+      <map>
+        <entry key="attribute_value" value="AttributeValue" />
+        <entry key="attribute_values" value="AttributeValue" />
+        <entry key="global_config" value="globalConfig" />
+        <entry key="global_configs" value="globalConfig" />
+        <entry key="monster" value="Monster" />
+        <entry key="monster_attribute_value_config" value="monsterAttributeValueConfig" />
+        <entry key="monster_attribute_value_configs" value="monsterAttributeValueConfig" />
+        <entry key="monster_config" value="monsterConfig" />
+        <entry key="monster_configs" value="monsterConfig" />
+        <entry key="monsters" value="Monster" />
+        <entry key="test_proto" value="TestProto" />
+        <entry key="test_protoes" value="TestProto" />
+      </map>
+    </option>
+    <option name="lastTimeChecked" value="1698660439913" />
+  </component>
+</project>

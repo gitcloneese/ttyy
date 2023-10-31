@@ -1,0 +1,71 @@
+// 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
+// protobuf 文件参考:
+//  - https://developers.google.com/protocol-buffers/
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+//import "protobuf/google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+import "account/account.proto";
+
+// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
+package account;
+
+// NOTE: 最后请删除这些无用的注释 (゜-゜)つロ
+
+option go_package = "xy3-proto/account;v1";
+option (gogoproto.goproto_getters_all) = false;
+
+service Account {
+  rpc AccountRoleList(AccountRoleListReq) returns (AccountRoleListRsp) {
+    option (google.api.http) = {
+      post: "/account/AccountRoleList"
+      body: "*"
+    };
+  };
+
+  rpc UserDisable(UserDisableReq) returns (UserDisableRsp) {
+    option (google.api.http) = {
+      post: "/account/UserDisable"
+      body: "*"
+    };
+  };
+
+  // 封号
+  rpc LockAccount (LockAccountReq) returns (LockAccountRsp) {
+    option (google.api.http) = {
+      post: "/account/LockAccount"
+      body: "*"
+    };
+  };
+
+  // 封号记录
+  rpc LockList (LockListReq) returns (LockListRsp) {
+    option (google.api.http) = {
+      post: "/account/LockList"
+      body: "*"
+    };
+  };
+
+  // 踢玩家下线
+  rpc KickPlayer(KickPlayerReq) returns (KickPlayerRsp) {
+    option (google.api.http) = {
+      post: "/account/KickPlayer"
+      body: "*"
+    };
+  };
+  // 获取玩家详情
+  rpc GetPlayerInfo(GetPlayerInfoReq) returns (GetPlayerInfoRsp) {
+    option (google.api.http) = {
+      post: "/account/GetPlayerInfo"
+      body: "*"
+    };
+  };
+  // 获取玩家仙人信息
+  rpc GetPlayerHeroInfo(GetPlayerHeroInfoReq) returns (GetPlayerHeroInfoRsp) {
+    option (google.api.http) = {
+      post: "/account/GetPlayerHeroInfo"
+      body: "*"
+    };
+  };
+}

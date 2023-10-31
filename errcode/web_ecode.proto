@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package errcode;
+
+option go_package = "xy3-proto/coordinator;v1";
+
+enum WebErrCode {
+	Successed = 0; //成功
+	GetWarZoneListFailed = 60001; //获取列表失败
+	WarZoneProhibitModify = 60002; //战区信息禁止修改
+	AddWarZoneFailed = 60003; //添加战区配置信息失败
+	GetServerListFailed = 60004; //获取服务器列表失败
+	ServerInfoProhibitModify = 60005; //服务器信息禁止修改
+	AddServerInfoFailed = 60006; //添加服务器配置信息失败
+}

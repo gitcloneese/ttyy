@@ -1,0 +1,1 @@
+protoc -I=../ -I=../third_party -I=../third_party/github.com/gogo/protobuf -I=../third_party/github.com/gogo/googleapis -I=. --ecode_out=:. *.proto

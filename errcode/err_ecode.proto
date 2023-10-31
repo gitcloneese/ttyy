@@ -1,0 +1,706 @@
+syntax = "proto3";
+
+package errcode;
+option go_package = "xy3-proto/errcode;v1";
+// 所有服务的错误码均在这里 错误码要按业务进行分段,业务逻辑错误码10000以上
+
+
+// 客户端会使用到的错误码在这里
+enum ErrCode{
+  OK           			      = 0;  // 成功
+  DeserializeFailed       = 1;  // 序列化失败
+  IllegalParams           = 2;  // 参数非法
+  RedisError              = 3;  // Redis组件异常
+  RedisLockTimeout        = 6;  // 系统繁忙
+  RedisLockFailed         = 7;  // 系统繁忙
+  Offlining               = 8;  // 下线中，请稍后再试
+  UserDisable             = 9;  // 用户被封禁
+  ForbidChatChannelErr    = 10; // 运营后台：禁言失败，频道错误
+  ForbidChat              = 11; // 客户端： 该频道已禁言
+  AccountDisable          = 12; // 帐户被封禁
+
+  // publisher
+  NoHandler               = 101;  // 方法未定义
+  AuthorizationFailed     = 104;  // 权限认证失败
+  NotFindPlayer           = 105;  // 用户不存在
+  SessionNotExist         = 106;  // Session不存在
+  PushFailed              = 107;  // 消息推送失败
+  ServiceHostNotMatched   = 108;  // 服务器地址与玩家不匹配
+
+  // coordinator
+  NoActivityHost          = 201;  // 没有活跃的服务器
+  PlayerAlreadyAllotted   = 202;  // 玩家已分配服务器
+  // grpc client dial error
+  CoordinatorError        = 301;  // 协调服调用失败
+  PublisherError          = 302;  // 推送福调用失败
+
+  
+  /////////////////// Platform /////////////////////////////////////////////
+  CreateAccountError            = 401;           // 创建账号错误
+  SetTokenError                 = 402;                // 设置token错误
+  AccountNotExists              = 403;             // 账号不存在
+  GetAccountError               = 404;              // 获取账号失败
+  PasswordMismatch              = 405;                // 密码错误
+  CreateVerifyCodeFailed        = 406;       // 创建验证码失败
+  BeyondVerifyCodeMaxSendCount  = 407; // 超出验证码最大发送次数
+  SaveVerifyCodeFailed          = 408;         // 保存验证码失败
+  SendVerifyCodeFailed          = 409;         // 发送验证码失败
+  AccountAlreadyExists          = 410;        // 账号已存在
+  VerifyCodeError               = 411;             // 验证码错误
+  RemoveVerifyCodeError         = 412;       // 删除验证码错误
+  ThirdVerifyFailed             = 413;           // 第三方验证失败
+  ThirdLoginFailed              = 414;            // 第三方登录失败
+  LogoutFailed                  = 415;                // 登出失败
+  VerifyAccessTokenFail         = 416;       // 验证AccessToken失败
+  GenerateUnionIdError          = 417;        // 生成UnionId失败
+  LoginTypeInvalid              = 418;        // 登录类型无效
+  UnbindNotAllowed              = 419;        // 未绑定，不允许解绑  
+  PasswordCreationError         = 420;                // 密码生成错误
+  EmailCreationError            = 421;                // 邮箱生成错误
+  DeviceUidEmpty                = 422;                // 设备唯一标识为空
+  GetServerListError            = 423;                // 获取服务器列表错误
+
+  //////////////////////////////////////////////////////////////////////////
+  ConfigNotExist          = 601; // 配置不存在
+  DataException           = 602; // 数据异常
+  SystemLocked            = 666; // 系统未解锁
+
+  CrossSceneNil           = 670;  // 跨服RPC-scene-client is nil
+  CrossUserNotFind        = 671;  // 跨服RPC：玩家不存在
+  CrossUnmarshalFailed    = 672;  // 跨服PRC：反序列化失败
+  CrossMarshalFailed      = 673;  // 跨服PRC：序列化失败
+
+  GoodsNotExist           = 701;  // 物品不存在
+  GoodsUseLvTooHigh       = 702;  // 物品使用等级过高
+  GoodsNotEnough          = 703;  // 物品数量不足
+  GoodsNotUse             = 704;  // 物品不属于使用物品 
+  GoodsNotConfig          = 705;  // 物品找不到配置
+  GoodsInvalidArgs        = 706;  // 物品参数错误
+  GoodsNotSell            = 707;  // 物品不能出售
+  GoodsAwardFail          = 708;  // 发奖失败
+
+  TokenInvalid            = 801; // 无效的token
+
+  NoUser                  = 900; // 用户不存在
+  PlayerExistCreateFailed = 901; // 角色已存在，创建失败
+  NoExistSelectFailed     = 902; // 角色不存在，选择角色失败
+  DBErrSelectFailed       = 903; // DB错误，选择角色失败
+  EnterGameFailed         = 904; // 进入游戏失败，
+  DBErrGetFailed          = 905; // DB错误，查询角色失败
+
+  UnknownError            = 10000;   // 未知异常
+
+  FormatActivityErr       = 10001; // 登陆大包获取活动信息失败
+  FormatChatErr           = 10002; // 登陆大包获取聊天信息失败
+  FormatFriendErr         = 10003; // 登陆大包获取好友信息失败
+  FormatMailErr           = 10004; // 登陆大包获取邮件信息失败
+  FormatTaskErr           = 10005; // 登陆大包获取任务信息失败  
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  GuildNoUser                   = 12350;  // 微服务：找不到userinfo
+  GuildCreateFailed             = 12351;  // 微服务：创建失败
+  GuildRedisErr                 = 12352;  // 微服务：redis错误
+  GuildExitForbid               = 12353;  // 微服务：公会还有其他成员，会长无法直接退出公会
+  GuildExitErr                  = 12354;  // 微服务：会员退出失败
+  GuildNotImpeach               = 12355;  // 微服务：当前无法弹劾
+  GuildNoChairAndVice           = 12356;  // 微服务：不是会长或者副会长
+  GuildNoSameGuild              = 12357;  // 微服务：不同公会
+  GuildViceTooMore              = 12358;  // 微服务：副会长不能数量已经最多
+  GuildNoticeIll                = 12360;  // 微服务：公告屏蔽字
+  GuildArchMaxLv                = 12361;  // 微服务：建筑最大等级
+  GuildNoType                   = 12362;  // 微服务：没有该类型
+  GuildNoFund                   = 12363;  // 微服务：资金不足
+  GuildMailErr                  = 12364;  // 微服务：邮件发送失败
+  GuildTextIll                  = 12365;  // 微服务：输入的文本含有屏蔽字
+  GuildNoGuild1                 = 12366;  // 微服务：没有公会
+  GuildInGuil1                  = 12367;  // 微服务：已经在公会
+  GuildCooling1                 = 12368;  // 微服务：冷却中
+  GuildNoChairman1              = 12369;  // 微服务：不会会长
+  GuildNoCfg1                   = 12370;  // 微服务：没有配置
+  GuildHuntDiscardNoBattle      = 12371;  // 狩猎之门：放弃战斗失败，当前不在战斗中
+  GuildArchUpMainLvNot          = 12372;  // 微服务：升级该建筑，大殿等级不足
+  GuildExitTimeErr              = 12373;  // 微服务：当前时间段，禁止玩家退出仙盟
+  
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  MailNewPartFailed  = 12550; // 邮件发送部分失败
+  MailAlreadGeted    = 12551; // 邮件已领取，领取失败
+  MailNoReward       = 12552; // 邮件无附件，领取失败
+  MailNotExist       = 12553; // 邮件不存在
+  MailUnread         = 12554; // 邮件未读，删除失败
+  MailUnGet          = 12555; // 邮件未领取，删除失败
+  MailRewardFailed   = 12556; // 邮件获取奖励失败
+  
+  /////////////////////////////////////////////////////////////////////////////////////////////////
+  FriendMax            = 12701;   // 好友已满
+  FriendRequestNotList = 12702;   // 好友请求未在列表中
+  TargetFriendMax      = 12703;   // 对方好友已满
+  PlayerInfoNotExist   = 12704;   // 角色信息不存在
+  FriendNotExist       = 12705;   // 好友不存在
+  FriendPointNotExist  = 12706;   // 好友点信息不存在
+  PlayerLevelNotExist  = 12707;   // 没有推荐玩家
+  PlayerNotExist       = 12708;   // 玩家不存在
+  InBlackList          = 12709;   // 玩家已经在黑名单中
+  GetPointCountMax     = 12710;   // 友情点每日获取次数达到上限
+  GivePointCountMax    = 12711;   // 友情点每日赠送次数达到上限
+  SeachTooManyFriend   = 12712;   // 已经搜索太多好友
+  
+  /////////////////////////////////////////////////////////////////////////////////////////////////
+  LeaseHeroFightCountMax    = 12801;  // 租借英雄战斗次数已达上限
+  LeaseHeroRequestNotFriend = 12802;  // 不是好友不能发送租借请求
+  LeaseHeroSelfMax          = 12803;  // 租借到的好友已达上限
+  LeaseHeroTargetEmpty      = 12804;  // 对方可租借的好友为空
+  LeaseHeroTargetLease      = 12805;  // 对方的英雄已出租
+  LeaseHeroTargetCD         = 12806;  // 对方的英雄CD中
+  LeaseHeroNotSelf          = 12807;  // 不能租借自己的英雄
+  LeaseHeroRequestMax       = 12808;  // 对方租借列表已满
+  LeaseHeroNotOwner         = 12809;  // 出借者不存在
+  LeaseHeroTaskEmpty        = 12810;  // 还未达成任何任务
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  ChatImServerErr       = 12650; //聊天IM-Server错误，可能是通信错误，可能是对方逻辑错误，不做区分
+  ChatUserNil           = 12651; //用户不在chatuser中
+  ChatUserImid0         = 12652; //个人的imid为0,
+  ChatRoomImidNo        = 12653; //房间广播id不存在
+  ChatSendSignErr       = 12654; //发送消息失败，IM-Server签名失败
+  ChatUserErr           = 13050; //聊天用户错误
+  ChatNoRole            = 13051; //聊天查找不到玩家
+  ChatChannelWorldErr   = 13052; //聊天世界频道处理错误
+  ChatChannelPeerErr    = 13053; //聊天私聊错误  
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////
+  RedPacketRedisErr     = 13150; //redis错误
+  RedPacketNoCfg        = 13151; //没有配置
+  RedPacketFull         = 13152; //玩家未发红包列表已满
+  RedPacketNoUser       = 13153; //查找不到该玩家
+  RedPacketNotInGuild   = 13154; //没有在公会中
+  RedPacketNotExist     = 13155; //红包不存在
+  RedPacketOverTime     = 13156; //红包过期
+  RedPacketGetFinish    = 13157; //红包已领完
+  RedPacketGeted        = 13158; //已领取该红包
+  RedPacketGiveMax      = 13159; //当天已发红包最大上限
+  RedPacketGetMax       = 13160; //今日领取已达上限
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////
+  DevilConquerNoConfig  = 13250; //魔将讨伐微服务：没有该配置
+  DevilConquerRedisErr  = 13251; //魔将讨伐微服务：Redis错误
+  DevilConquerNoUser    = 13252; //魔将讨伐微服务：没有该玩家
+  DevilConquerDayNot    = 13253; //魔将讨伐微服务：当天没有魔将讨伐
+  DevilConquerNoInTime  = 13254; //魔将讨伐微服务：不在活动时间内
+  DevilConquerNoRobbed  = 13255; //魔将讨伐微服务：被掠夺者找不到了
+
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  AuctionNoConfig       = 13650; //拍卖行：没有配置
+  AuctionStageErr       = 13651; //拍卖行：阶段错误
+  AuctionNoGoods        = 13652; //拍卖行：找不到拍卖品
+  AuctionHasFixedPrice  = 13653; //拍卖行：已经一口价卖出
+  AuctionRepeatBid      = 13654; //拍卖行：重复出价
+  AuctionBidPriceErr    = 13655; //拍卖行：出价不匹配
+  AuctionRedisErr       = 13656; //拍卖行：Redis错误
+  AuctionNoTakein       = 13657; //拍卖行：未参与活动
+  AuctionBonusGeted     = 13658; //拍卖行：已经领取该拍卖奖励
+  AuctionNowNoGoods     = 13659; //拍卖行：当前不在拍卖时间内，拍卖行暂无商品
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  LiveDRewardUnReach    = 30201; //活跃度奖励：活动度没有达到该档次
+  LiveDRewardGeted      = 30202; //活跃度奖励：已经领取该奖励
+  LiveDTBoxTooFew       = 30203; //活跃度奖励：专属宝箱太少
+  LiveDNoConfig         = 30204; //活跃度奖励：找不到配置
+  LiveDRewardFailed     = 30205; //活跃度奖励：发奖失败
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  GoodsAddEcoMax        = 30301; //物品使用：体力或者精力使用盒子最大值  
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  NewHandbookSetFailed  = 30401; //新手引导设置失败
+  VIPLvNoEnough         = 30402; //VIP等级不足
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  PvpFightingRankErr              = 40101; // 斗法排行查询失败
+  PvpFightingRankDataErr          = 40102; // 斗法排行信息查询失败
+  PvpFightingChangeRankErr        = 40103; // 斗法排行交换失败
+  PvpFightingReplaceErr           = 40104; // 斗法排名替补失败
+  PvpFightingReportNotExist       = 40105; // 斗法战报信息不存在
+  
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  BattleInfoNotExist              = 40401; // 战斗信息不存在
+  LineupInfoNotExist              = 40402; // 阵容信息不存在
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  ZTPvpLevelRewardLimit              = 50000;  // 诸天斗法已达到本服段位领奖上限
+  ZTPvpLevelTaskNotExist             = 50001;  // 诸天斗法段位任务不存在
+  ZTPvpSeasonNotJoin                 = 50002;  // 诸天斗法赛季未参与
+  ZTPvpLevelNotEnough                = 50003;  // 诸天斗法段位未达到要求
+  ZTPvpLevelTaskReceived             = 50004;  // 诸天斗法段位奖励已经领取
+  ZTPvpTaskNotExist                  = 50005;  // 诸天斗法任务不存在
+  ZTPvpTaskNotEnough                 = 50006;  // 诸天斗法任务完成度不足
+  ZTPvpTaskReceived                  = 50007;  // 诸天斗法任务奖励已经领取
+  ZTPvpCheckBattleErr                = 50008;  // 诸天斗法战斗校验失败
+  ZTPvpPlayerUpdateErr               = 50009;  // 诸天斗法玩家数据更新失败
+  ZTPvpPlayerUpdateRankErr           = 50010;  // 诸天斗法玩家排行榜更新失败
+  ZTPvpGetPlayerRankErr              = 50011;  // 诸天斗法玩家排行榜查询失败
+  ZTPvpUpdateLevelLimitErr           = 50012;  // 诸天斗法玩家段位限制更新失败
+  ZTPvpRecordUpdateErr               = 50013;  // 诸天斗法战报保存失败
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  TTPvpLevelRewardLimit              = 51000;  // 天梯斗法已达到本服段位领奖上限
+  TTPvpLevelTaskNotExist             = 51001;  // 天梯斗法段位任务不存在
+  TTPvpSeasonNotJoin                 = 51002;  // 天梯斗法赛季未参与
+  TTPvpLevelNotEnough                = 51003;  // 天梯斗法段位未达到要求
+  TTPvpLevelTaskReceived             = 51004;  // 天梯斗法段位奖励已经领取
+  TTPvpTaskNotExist                  = 51005;  // 天梯斗法任务不存在
+  TTPvpTaskNotEnough                 = 51006;  // 天梯斗法任务完成度不足
+  TTPvpTaskReceived                  = 51007;  // 天梯斗法任务奖励已经领取
+  TTPvpCheckBattleErr                = 51008;  // 天梯斗法战斗校验失败
+  TTPvpPlayerUpdateErr               = 51009;  // 天梯斗法玩家数据更新失败
+  TTPvpPlayerUpdateRankErr           = 51010;  // 天梯斗法玩家排行榜更新失败
+  TTPvpGetPlayerRankErr              = 51011;  // 天梯斗法玩家排行榜查询失败
+  TTPvpUpdateLevelLimitErr           = 51012;  // 天梯斗法玩家段位限制更新失败
+  TTPvpRecordUpdateErr               = 51013;  // 天梯斗法战报保存失败
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  // scene迁移过来的错误码
+
+  // ErrorCodeNone           = 0;    // 成功
+
+
+
+  LineupGroupNotExist           = 10101; // 阵容编队不存在
+  LineupIndexNotExist           = 10102; // 阵容索引不存在
+  // LineupInfoNotExist            = 10103; // 阵容信息不存在
+  LineupGridNotExist            = 10104; // 阵容格子不存在
+  LineupHeroNotExist            = 10105; // 阵位英雄未上阵
+  LineupHeroAlreadyExist        = 10106; // 阵位英雄已上阵
+  LineupGridNotUnlock           = 10107; // 阵位格子未解锁
+  LineupNotSave                 = 10108; // 阵容未保存
+  LineupDisabled                = 10109; // 阵容不可使用
+  LineupHeroNameAlreadyExist    = 10110; // 同名英雄已上阵
+  LineupLeaseHeroAlreadyExist   = 10111; // 租借英雄已阵
+  LineupOtherLeaseAlreadyExist  = 10112; // 已在其他阵容上阵租借
+  LineupNoGroup                 = 10113; // 没有该组阵容
+  LineupNoID                    = 10114; // 没有组内没有该阵容索引
+
+  EquipNotExist                 = 10121; // 装备不存在
+  EquipQualityMax               = 10122; // 装备品质已达上限
+  EquipLevelMax                 = 10123; // 装备等级已达最高
+  EquipQualityNotEnough         = 10124; // 装备品质不足
+  EquipRefineLevelMax           = 10125; // 装备精炼等级已达最高
+  EquipSealLevelMax             = 10126; // 装备符印刻印等级已达最高
+
+  LineupTeamsIllegal            = 10141; // 阵容编队不合法
+  LineupTeamsNotExist           = 10142; // 阵容编队不存在
+  LineupTeamsMax                = 10143; // 阵容编队已达上限
+  LineupTeamsNameExist          = 10144; // 阵容编队名称已存在
+  
+  NameIsEmpty                   = 10150; // 名称不能为空
+  NameIsIllegal                 = 10151; // 名称存在违法字符
+  LineupNameLen                 = 10152; // 阵容名称长度不合法
+  LineupTeamNameLen             = 10153; // 阵容编队名称长度不合法
+
+  HeroUpStarNotEnough           = 10301;  // 仙人升星材料不足
+  HeroUpStarMax                 = 10302;  // 仙人已升到满星
+  HeroUpQualityNotEnough        = 10303;  // 仙人升品材料不足
+  HeroUpQualityMax              = 10304;  // 仙人已满品
+  HeroUpAwakenNotEnough         = 10305;  // 仙人觉醒材料不足
+  HeroUpAwakenMax               = 10306;  // 仙人觉醒以满
+  HeroNeedStarMax               = 10307;  // 仙人需要满星才能升品
+  HeroNeedQualityMax            = 10308;  // 仙人需要满品才能觉醒
+  HeroUpStarNotConfig           = 10309;  // 仙人无升星配置
+  HeroUpQualityNotConfig        = 10310;  // 仙人无升品配置
+  HeroUpAwakenNotConfig         = 10311;  // 仙人无升觉醒配置
+  HeroActiveExist               = 10312;  // 仙人已存在，激活失败
+  HeroActiveNotConfig           = 10313;  // 仙人找不到配置
+  HeroActiveNotEnough           = 10314;  // 仙人激活材料不足
+  HeroLevelNotEnough            = 10315;  // 仙人等级不足
+  HeroLevelMax                  = 10316;  // 仙人等级已满
+  HeroNotExist                  = 10317;  // 仙人不存在
+
+  LeaderSkillNotExist           = 10401;  // 掌教技能不存在
+  LeaderSkillReplace            = 10402;  // 掌教技能只能被替换
+  LeaderTalentGoodsNotEnough    = 10403;  // 掌教灵根激活物品不足
+  LeaderTalentMax               = 10404;  // 掌教灵根激活已达上限
+  LeaderFragmentNotEnough       = 10405;  // 掌教神器解锁碎片不足
+  LeaderFragmentUpNotEnough     = 10406;  // 掌教神器升级碎片不足
+  LeaderForgeGoodsNotEnough     = 10407;  // 掌教神锻物品不足
+  LeaderForgeNotExistType       = 10408;  // 掌教神锻不存在的神锻类型
+  LeaderForgeCountMax           = 10409;  // 掌教神锻已达上限
+  LeaderSkilLocked              = 10410;  // 掌教时装未解锁
+  LeaderStarNotEnough           = 10411;  // 掌教神器星级不足,不能升品
+  LeaderUpQualityGoodsNotEnough = 10412;  // 掌教神器升品物品不足
+  LeaderLevelNotEnough          = 10413;  // 掌教等级不足
+
+  TouhouClickNotOpen            = 10501;  // 东皇钟系统未开放
+  TouhouClickNotEnough          = 10502;  // 东皇钟激活碎片不足
+  TouhouClickMax                = 10503;  // 东皇钟已经最大order
+  TouhouClickNotConfig          = 10504;  // 东皇钟没有配置
+
+  StoryBattleIDNotExist         = 10701;  // 配置battleid不存在
+  StoryBattleNotOpen            = 10702;  // 战场未开放(未解锁) 
+  StoryBattleAlreadyPass        = 10703;  // 战场已通关，不能重复打
+  StoryNoFighter                = 10704;  // 阵容为空不能战斗
+  StoryBattleNotExist           = 10705;  // 战场不存在(无正在打的战斗)
+  StorySettleIDNotMatch         = 10706;  // 请求结算的battleid和正在战斗的battleid不相符
+  StoryVitNotEnough             = 10710;  //活力不足
+  StoryExploreLocked            = 10714;  //探索系统还未解锁
+  StoryDropinLocked             = 10715;  //英雄还未解锁,不能拜访
+  StoryDropinMax                = 10716;  //已达今日拜访上限
+  StoryDropinCoolDown           = 10717;  //英雄拜访次数还未冷却
+
+
+  StoryExploreNotExist          = 10719;  //探索关卡不存在
+  StoryExploreNotZero           = 10720;  //探索次数不能为0
+  StoryFastPlaceLocked          = 10721;  //快速挂机未解锁
+
+  CoinNotEnough                 = 10801; // 货币不足
+  PurchaseTimeNotEnough         = 10802; // 购买次数不足
+  GoodsNotPass                  = 10803; // 商品未解锁
+  GoodsSellOut                  = 10804; // 商品已售罄
+  RechargeNotExist              = 10805; // 仙玉商品不存在
+  GoodsAlreadyReceived          = 10806; // 物品已领取
+  GroceryConfigrefresh          = 10807; // 杂货铺配置更新
+  PackageConfigrefresh          = 10808; // 商城配置更新
+  VipGiftNotExist               = 10821; // vip礼包不存在
+  VipGiftLevelNotEnough         = 10822; // vip等级不足不能领取
+  VipGiftNotGet                 = 10823; // 已经领取过,不能重复领取
+  VipCfgNotExist                = 10824; // vip奖励配置不存在
+  GroceryInfoNil                = 10825; // 杂货铺数据信息不存在
+  GroceryCostCoinErr            = 10826; // 杂货铺消耗货币错误
+
+  BableLocked                   = 10901; // 登天塔尚未解锁
+  BableNotOpen                  = 10902; // 登天塔尚未开启
+  BableBattleCountNotEnough     = 10903; // 登天塔战斗次数不足
+  BableLineupError              = 10904; // 登天塔阵容不符合战斗需求
+  BableLineupEmpty              = 10905; // 登天塔阵容为空
+  BableMaxFloor                 = 10906; // 已达到登天塔最高层数
+  BableFloorNotExist            = 10907; // 登天塔层数不存在
+  BableBigRewardNotExist        = 10908; // 登天塔节点奖励不存在
+  BableBigRewardReceived        = 10909; // 登天塔节点奖励已被领取
+  BableAssignHeroNotExist       = 10910; // 登天塔上阵仙人不存在
+  BableAssignEquipNotExist      = 10911; // 登天塔上阵装备不存在
+  BableLeaderSkillNotExist      = 10912; // 登天塔上阵掌教技能不存在
+  BableLineupNotMatch           = 10913; // 登天塔阵容和条件不符
+  BableRankRewardReceived       = 10914; // 登天塔排行奖励已领取
+  BableRankRewardNotGet         = 10915; // 登天塔排行奖励不能领取
+  BableReplayNotExist           = 10916; // 登天塔录像不存在
+
+  BableAfkNotCheckout           = 10917;  //挂机还未产生任何收益
+  BableAfkLocked                = 10918;  //挂机系统还未解锁
+  BableFastAfkMax               = 10919;  //快速挂机已达当日上限
+  BableFastAfkTicketNotEnough   = 10920;  //快速挂机点券不足
+
+  LingBaoNotConfig              = 11010;  //灵宝找不到配置
+  LingBaoActiveAlready          = 11011;  //灵宝已激活
+  LingBaoActiveNotEnough        = 11012;  //灵宝激活材料不够
+  LingBaoUpStarNotEnough        = 11020;  //灵宝升星材料不够
+  LingBaoUpStarMax              = 11021;  //灵宝升星最大星
+  LingBaoUpStarNotConfig        = 11022;  //灵宝升星没有配置
+  LingBaoUpAdvanceStarLow       = 11030;  //灵宝升阶(淬炼)星级不够
+  LingBaoUpAdvanceNotConfig     = 11031;  //灵宝升阶(淬炼)没有配置
+  LingBaoUpAdvanceNotEnough     = 11032;  //灵宝升阶(淬炼)材料不够
+  LingBaoUpAdvanceMax           = 11033;  //灵宝升阶(淬炼)满阶
+  LingBaoNoActive               = 11034;  //灵宝未激活
+  LingBaoUsingNumErr            = 11041;  //灵宝使用数量不对
+  LingBaoUsingRepet             = 11042;  //灵宝使用重复
+
+  FairyWareNotExist             = 11100;  // 仙器不存在
+  FairyWareNotConfig            = 11101;  // 仙器配置不存在
+  FairyWareTypeError            = 11102;  // 仙器类型配置错误
+  FairyWareLevelMax             = 11103;  // 仙器等级已达
+  FairyWareAlreadyLock          = 11104;  // 仙器已上锁
+  FairyWareAlreadyEmploy        = 11105;  // 仙器已装备
+
+  RecruitBaseDayMax             = 11201;  // 基础聚仙已达每日上限
+  RecruitBaseGoodsNotEnough     = 11202;  // 基础聚仙物品不足
+  RecruitWishNotEnough          = 11203;  // 基础聚仙许愿次数已用完
+  RecruitWishNotReset           = 11204;  // 基础聚仙许愿次数还未重置
+  RecruitFriendDayMax           = 11205;  // 好友聚仙已达每日上限
+  RecruitFriendCoinNotEnough    = 11206;  // 好友聚仙友情点不足
+  RecruitGoodsDayMax            = 11207;  // 物品聚仙已达每日上限
+  RecruitGoodsGoodsNotEnough    = 11208;  // 物品聚仙物品不足
+  RecruitGoodsWishEmpty         = 11209;  // 物品聚仙许愿池不能为空
+  RecruitRaceDayMax             = 11210;  // 种族聚仙已达每日上限
+  RecruitRaceNotEnough          = 11211;  // 种族聚仙物品不足
+  RecruitRaceOpened             = 11212;  // 种族不能重复开启
+  RecruitChangeRaceNotEnough    = 11213;  // 切换种族货币不足
+  RecruitWishStateError         = 11214;  // 许愿已经达成不能再次设置
+  RecruitWishLocked             = 11215;  // 许愿树未解锁
+
+  LinggenNotConfig              = 11301;  //灵根找不到配置
+  LinggenHeroNotInLineup        = 11302;  //仙人没有上阵
+  LinggenDotNotEnough           = 11303;  //点数不足
+  LinggenReqLinggen             = 11304;  //需要激活前置灵根
+  LinggenAlreadyActive          = 11305;  //灵根已经激活
+  LinggenResetNoAlloc           = 11306;  //重置失败，灵根没有分配
+  LinggenResetNotEnough         = 11307;  //重置失败，没有足够的货币
+  LinggenNeedOrder              = 11308;  //仙人从高阶阵位换到低阶阵位，必须依次激活之前的点击顺序没有激活全部点击之前，不能点其他可以点的分支
+  LinggenDotUsedNotEnough       = 11309;  //激活该灵根，已经使用的点数不足
+  LinggenLevelError             = 11310;  //激活该灵根，等级不对
+  LinggenHeroTypeErr            = 11311;  //激活该灵根，类型错误，和仙人的类型不匹配
+
+  PvpFightingTargetNotExist                   = 11401;  // 挑战对手不存在
+  PvpFightingChallengeNotEnough               = 11402;  // 挑战次数不足
+  PvpFightingRefreshNotEnough                 = 11403;  // 刷新对手次数不足
+  PvpFightingAddChallengeNotEnough            = 11404; // 购买挑战次数不足
+  PvpFightingNotChallenge                     = 11405;  // 不允许挑战对手
+  PvpFightingChallengeNotList                 = 11406;  // 挑战对手不在列表中
+  PvpFightingPromoteLevelNotEnough            = 11407; // 晋升等级不足
+  PvpFightingPromotePowerNotEnough            = 11408; // 晋升战力不足
+  PvpFightingPromoteRankNotEnough             = 11409; // 晋升排行不足
+  PvpFightingRankRewardExchange               = 11410; // 排行奖励已兑换
+  PvpFightingRankRewardNotExchange            = 11411; // 排行奖励不能兑换 
+  PvpFightingRankRewardNotExist               = 11412; // 排行奖励不存在
+  PvpFightingRankRewardGoodsNotEnough         = 11413; // 兑换排行奖励物品不足
+  PvpFightingPromoteMax                       = 11414; // 已经晋升到最高段位了
+  PvpFightingLocked                           = 11415; // 斗法未解锁
+  PvpFightingAddChallengeTicketNotEnough      = 11416; // 增加挑战次数点券不足
+  PvpFightingLineupLocked                     = 11417; // 防守阵容未设置
+
+  EWNotHave                     = 11500;  //专属武器，该专属暂未拥有
+  EWNotEnough                   = 11501;  //专属武器，材料不足
+  EWNotConfig                   = 11502;  //专属武器，找不到配置
+  EWAlreadMaked                 = 11503;  //专属武器，已经打造
+  EWMaxStar                     = 11504;  //专属武器，已经满星
+  EWMaxAwaken                   = 11505;  //专属武器，已经满觉醒
+  EWNoRune                      = 11506;  //专属武器，没有该符文
+  EWAlreadRune                  = 11507;  //专属武器，该位置已有符文
+  EWRunePlaceUnlock             = 11508;  //专属武器，符文位置还没解锁
+  EWStageErrLow                 = 11509;  //专属武器，锁定属性条失败，阶段太低
+  EWAlreadUnlock                = 11510;  //专属武器，解锁失败，已经解锁了
+  EWBarMax                      = 11511;  //专属武器，改造失败，进度条已满，请升星
+  EWNoNeedConfirm               = 11512;  //专属武器，确认失败，当前无需确认
+  EWHoleNoAwaken                = 11513;  //专属武器，打孔失败，当前没有觉醒
+  EWHoleMax                     = 11514;  //专属武器，打孔失败，当前已最大孔数
+  EWNoHero                      = 11515;  //专属武器，仙人不存在，无法操作
+  EWAlreadLocked                = 11516;  //专属武器，锁定失败，已经锁定了
+  EWRandBarFailed               = 11517;  //专属武器，随机新属性条失败，配置错误
+  EWNeedConfirm                 = 11518;  //专属武器，淬炼失败，需要确认前次结果
+  EWRuneNoComp                  = 11519;  //专属武器，不能继续合成
+  EWRuneCompNotEn               = 11520;  //专属武器，符文合成，所需符文不足
+  EWStageErrSame                = 11521;  //专属武器，锁定属性条失败，阶段不能垫底
+  EWStageErr                    = 11522;  //专属武器，锁定属性条失败，Stage错误
+  EWRandBarNeedConfirm          = 11523;  //专属武器，随机后的新属性条，需要确认
+  EWAdvanceBarNeedConfirm       = 11524;  //专属武器，洗练后的结果需要确认
+  EWRandBarNoNeedConfirm        = 11525;  //专属武器，随机后新属性条，已经确认过，不需要再次确认
+  EWHoleRoleLvLow               = 11526;  //专属武器，打孔失败，玩家等级太低
+  EWAddNewFailed                = 11527;  // 专属武器添加失败
+
+  PengLaiTypeNotExist           = 11601;  // 蓬莱居类型不存在
+  PengLaiIndexNotExist          = 11602;  // 蓬莱居位置不存在
+  PengLaiIndexNotUnlock         = 11603;  // 蓬莱居位置未解锁
+  PengLaiIndexIsUnlock          = 11604;  // 蓬莱居位置已解锁
+  PengLaiHeroTypeNotAccord      = 11605;  // 仙人不符合蓬莱居类型
+  PengLaiSysIsNotOpen           = 11606;  // 蓬莱居系统未解锁
+
+  ZhenFaisUnlock                = 11621;  // 阵法已解锁
+  ZhenFaNotUnlock               = 11622;  // 阵法未解锁
+  ZhenFaSystemNotUnlock         = 11623;  // 阵法系统未解锁
+  ZhenFaMax                     = 11624;  // 阵法养成已达最高
+
+
+  ConstellationActivePropNotEnough    = 11651;  // 星宿激活材料不足
+  ConstellationActiveMaxLv            = 11652;  // 星宿激活已达最高等级
+  ConstellationAwakenPropNotEnough    = 11653;  // 星宿觉醒材料不足
+  ConstellationAwakenPointNotEnough   = 11654;  // 星宿觉醒所需星宿值不足
+  ConstellationAwakenMaxLv            = 11655;  // 星宿觉醒已达最高等级
+  ConstellationResetTimeLimit         = 11656;  // 星宿重置时间限制
+  ConstellationComposePropNotEnough   = 11657;  // 星宿合成材料不足
+  ConstellationCacluCost              = 11658;  // 星宿计算消耗异常
+
+  RoleNameIllegal               = 12001;  // 名字非法
+  RoleNameRepeat                = 12002;  // 名字重复
+  RoleNameLen                   = 12003;  // 名字过长
+  RoleNameEmpty                 = 12004;  // 名字不能为空
+  RoleHeadIconNoCfg             = 12005;  // 头像和边框没有该配置
+  RoleHeadIconNoActive          = 12006;  // 头像和边框没有获得
+  SkinNoCfg                     = 12007;  // 皮肤没有配置
+  SkinAlreadyOverTime           = 12008;  // 皮肤过期
+  SkinNoActive                  = 12009;  // 皮肤没有激活
+  RoleNameNoCost                = 12010;  // 改名费用不足
+  RoleNameCharIllegal           = 12011;  // 名字中的字母非法
+
+  GamesNotOpen                  = 12101;  // 小游戏未开放
+  StarPalaceIDNotExist          = 12102;  // 万象星宫参数ID不在预选中
+  GamesEnd                      = 12103;  // 小游戏已经结束
+
+  GuildRPCErr                   = 12300;  // 公会微服务错误
+  GuildInGuild                  = 12301;  // 已经在公会中
+  GuildCreateNoEnough           = 12302;  // 缺契约书
+  GuildCreateNoVip              = 12303;  // vip等级不足
+  GuildNoCfg                    = 12304;  // 没有该配置
+  GuildWordIll                  = 12305;  // 名字或者公告含有屏蔽字
+  GuildNotExist                 = 12306;  // 公会不存在
+  GuildApplyCool                = 12307;  // 申请加入失败，冷却中
+  GuildNoChairman               = 12308;  // 不是会长
+  GuildNameNoEnough             = 12309;  // 改名元宝不足
+  GuildCooling                  = 12310;  // 操作冷却中
+  GuildNoGuild                  = 12311;  // 没有公会
+  GuildHallMaxLv                = 12312;  // 大殿已达最高等级
+  GuildHallFundNoEnough         = 12313;  // 升级大殿资金不足
+  GuildHallRewardAlreadGet      = 12314;  // 大殿等级奖励已经领取
+  GuildHallLvErr                = 12315;  // 领奖等级错误
+  GuildHallLvRewardFailed       = 12316;  // 发奖失败
+  GuildNameLenErr               = 12317;  // 名字太长
+  GuildNoticeTooLong            = 12318;  // 公告太长
+  GuildFull                     = 12319;  // 公会已满
+  GuildNoMoney                  = 12320;  // 货币不足，无法捐献
+  GuildMaxDonateNum             = 12321;  // 次数最大，无法捐献  
+  GuildRewardFailed             = 12322;  // 发奖失败
+  GuildLowHuntNoCnt             = 12323;  // 低阶次数不足
+  GuildHighHuntNoExist          = 12324;  // 高阶之门索引不存在
+  GuildHighHuntMax              = 12325;  // 该高阶之门已最大次数
+  GuildBattleCheckFailed        = 12326;  // 战斗校验失败
+  GuildSweepNoFirst             = 12327;  // 扫荡失败，没有首同
+  GuildSweepHighErr             = 12328;  // 扫荡失败，高级索引错误
+  GuildSkillPavilionLvLow       = 12329;  // 公会技能升级失败，修身阁等级太低
+  GuildSkillLeaderLvLow         = 12330;  // 公会技能升级失败，主角等级太低
+  GuildSkillNeedOtherLv         = 12331;  // 公会技能升级失败，需要前置技能等级
+  GuildSkillLvMax               = 12332;  // 公会技能升级失败，最大等级
+  GuildSkillNoProp              = 12333;  // 公会技能升级失败，材料不足
+  // GuildRedisErr                 = 12334;  // 公会redis错误
+  GuildHasEmptyChar             = 12335;  // 公会文本有空白字符
+  GuildHasEnSymbol              = 12336;  // 公会文本有英文符号
+  GuildTooLong                  = 12337;  // 公会文本太长
+  GuildTooShort                 = 12338;  // 公会文本太短
+  GuildNameRepeat               = 12339;  // 公会名字重复
+  GuildRedpacketRewardErr       = 12340;  // 红包发奖失败
+  GuildRedpacketHandSlow        = 12341;  // 抢红包，手慢了
+  GuildFeatsNotEnough 	        = 12342;  // 功勋不足
+  GuildMemberInfoNotExist       = 12343;  // 公会成员信息不存在
+
+  TaskRewardFailed              = 12501; // 任务领奖失败
+  TaskActiveRewardFailed        = 12502; // 活跃度领奖失败
+  TaskConnectionFailed          = 12503; // 任务连接失败
+
+
+  BannerNo                      = 12605;  // 战旗没有
+  BannerNoCfg                   = 12606;  // 战旗配置错误
+  BannerNoEnough                = 12607;  // 战旗材料不足
+  BannerFull                    = 12608;  // 战旗打造, 背包已满
+  BannerForgeCountExceeded      = 12609;  // 战旗打造, 今日已没有次数
+  BannerGradeLow                = 12610;  // 战旗使用，阶数太低，替换失败(替换现有战旗必须使用同阶或高阶的)
+  BannerLvStarMax               = 12611;  // 战旗升级，满星级
+  BannerNoSubs                  = 12612;  // 战旗属性替换，没有该属性
+  BannerSubsMutex               = 12613;  // 战旗属性替换，同类同位置属性互斥
+  BannerSubsMax                 = 12614;  // 战旗属性替换，已最大条目
+  BannerNoRune                  = 12615;  // 战旗宝石不存在
+  BannerRuneTooLittle           = 12616;  // 战旗宝石太少，无法合成
+  BannerMakeNoLevel             = 12617;  // 战旗打造，主角没有达到等级    
+  BannerResolveReward           = 12618;  // 战旗分解，发奖失败
+  BannerResolveNo               = 12619;  // 战旗分解，没有符合条件的
+  BannerNoBannerRune            = 12620;  // 镶嵌失败，该位置没有战旗
+  BannerHoleLock                = 12621;  // 镶嵌失败，该位置没有解锁
+  BannerRuneMaxLv               = 12622;  // 合成失败，最大符文等级
+
+  AchievementDataErr            = 12901; // 成就数据异常
+  AchievementNotReach           = 12902; // 成就条件未达成
+  AchievementTypeErr            = 12903; // 成就类型错误
+  AchievementPrecondition       = 12904; // 成就前置条件未达成
+  AchievementNotExist           = 12905; // 成就不存在丫
+
+  ChatRPCErr                    = 13001; // 聊天微服务错误
+  ChatNoCfg                     = 13002; // 聊天配置错误
+  ChatMarshalErr                = 13003; // 聊天数据打包错误
+  ChatCooling                   = 13004; // 聊天冷却中
+  ChatNoMoney                   = 13005; // 聊天费用不足
+  ChatNoGetIcon                 = 13006; // 聊天Icon没有获得
+  ChatNoSendMe                  = 13007; // 聊天不能发自己
+  ChatNoPeer                    = 13008; // 聊天私聊对象不存在
+  ChatNoGuild                   = 13009; // 聊天公会不存在
+  ChatNoTeam                    = 13010; // 聊天组队已解散
+  ChatTextTooLong               = 13011;   // 聊天文本太长
+
+  // RedPacketNotInGuild     = 13101; //不在公会，无法领取
+  // RedPacketGetMax         = 13102; //今日已经领取数量上限
+  // RedPacketNoUser         = 13103; //不是公会成员
+  // RedPacketNotExist       = 13104; //红包不存在
+  RedPacketTypeGetLimit   = 13105; //该类型红包已达领取上限
+  RedPacketNoConfig       = 13106; //红包没有配置
+
+  // DevilConquerNoConfig    = 13200; //魔将讨伐：找不到配置
+  DevilConquerRpcErr      = 13201; //魔将讨伐：RPC错误
+  // DevilConquerNoUser      = 13202; //魔将讨伐：没有该玩家
+  // DevilConquerDayNot      = 13203; //魔将讨伐：当天没有魔将讨伐    
+  // DevilConquerNoInTime    = 13204; //魔将讨伐：不在活动时间
+  // DevilConquerNoRobbed    = 13205; //魔将讨伐：被掠夺者找不到了
+  DevilConquerNoInDungeon = 13206; //魔将讨伐：不在副本
+  DevilConquerCooling     = 13207; //魔将讨伐：冷却中
+  DevilConquerSameGuild   = 13208; //魔将讨伐：同公会不能抢夺
+  DevilConquerLineupErr   = 13209; //魔将讨伐：阵容错误
+  DevilConquerNoBattleCk  = 13210; //魔将讨伐：当前不需要校验
+  DevilConquerBattleFailed= 13211; //魔将讨伐：战斗校验失败
+  DevilConquerNoRobScore0 = 13212; //魔将讨伐：不能抢夺0积分玩家
+
+  MiscNoUser              = 13500; //查找不到玩家
+  MiscIsSelf              = 13501; //查找的是自己
+
+  // AuctionNoConfig       = 13601; //拍卖行：没有配置
+  // AuctionNoGoods        = 13602; //拍卖行：找不到拍卖品
+  // AuctionHasFixedPrice  = 13603; //拍卖行：已经一口价卖出
+  // AuctionRepeatBid      = 13604; //拍卖行：重复出价
+  // AuctionRedisErr       = 13605; //拍卖行：Redis错误
+  // AuctionBonusGeted     = 13606; //拍卖行：已经领取该拍卖奖励
+  AuctionRPCErr         = 13607; //拍卖行：RPC错误
+  AuctionNotEnoughGold  = 13608; //拍卖行：没有足够的元宝
+
+  ActivityNotOpen                 = 13701; // 活动未开放  
+  ActivityTypeErr                 = 13702; // 活动类型错误
+  ActivityInfoErr                 = 13703; // 活动数据异常
+  GoldJadeNumberNotEnough         = 13710; // 招财次数不足
+  GoldJadeRandomCoinErr           = 13711; // 随机货币错误
+  RewardAlreadyReceive            = 13712; // 奖励已经领取
+  RewardNotTime                   = 13713; // 未在领取时间
+  GiftDoNotBuy                    = 13714; // 礼包不可购买
+  GiftNotReceive                  = 13715; // 礼包不可领取
+  GiftNotBuy                      = 13716; // 礼包未购买
+  GiftAlreadyBuy                  = 13717; // 礼包已购买
+  GiftAlreadyReceive              = 13718; // 礼包已领取
+  ConditionNotEnough              = 13719; // 条件未达成
+  ActivityPeentoIDErr             = 13720; // 蟠桃指定的ID不匹配
+
+  ThreeWorldRefreshCountNotEnough  = 15001; // 三界试炼刷新次数不足
+  ThreeWorldPassed                 = 15002; // 三界试炼已通关
+  ThreeWorldIslandNotExist         = 15003; // 三界试炼岛屿不存在
+  ThreeWorldLastIsland             = 15004; // 三界试炼已经是最终关卡不能再进行选择岛屿
+  ThreeWorldEventNotExist          = 15005; // 三界试炼事件不存在
+  ThreeWorldNotChose               = 15006; // 三界试炼还未选择岛屿不能参与事件
+  ThreeWorldNotBattleEvent         = 15007; // 三界试炼当前事件不是战斗事件
+  ThreeWorldNotBattleLost          = 15008; // 三界试炼战斗失败不能选择遗物
+  ThreeWorldShopItemNotExist       = 15009; // 三界试炼商品不存在
+  ThreeWorldNotHealingEvent        = 15010; // 三界试炼当前事件不是泉水事件
+  ThreeWorldEventPassed            = 15011; // 三界试炼事件已通过
+  ThreeWorldNotBoxEvent            = 15012; // 三界试炼当前事件不是宝箱事件
+  ThreeWorldNotTheasureEvent       = 15013; // 三界试炼当前事件不是异宝事件
+  ThreeWorldTheasureNotExist       = 15014; // 三界试炼异宝不存在
+  ThreeWorldNotHeroEvent           = 15015; // 三界试炼当前事件不是仙府事件
+  ThreeWorldHeroNotExist           = 15016; // 三界试炼仙人不存在
+  ThreeWorldResetCountNotEnough    = 15017; // 三界试炼重置次数不足
+  ThreeWorldEventStateErr          = 15018; // 三界试炼事件未完成不能参与
+  ThreeWorldRefreshIncompleteEvent = 15019; // 三界尝试刷新已经开始的事件
+
+  //////////////// manual ///////////////////////////
+  ReceiveManualRewardFail = 16000;                  //领取手册奖励失败
+  ReceiveManualGrandTotalTaskRewardFail = 16001;    //领取手册累计任务奖励失败
+
+  FangcunLocked                   = 18000; // 方寸山尚未解锁
+  FangcunAreaNotOpen              = 18001; // 方寸山场景尚未开启
+  FangcunBattleCountNotEnough     = 18002; // 战斗次数不足以进入方寸山
+  FangcunLineupError              = 18003; // 方寸山阵容不符合战斗要求
+  FangcunLineupEmpty              = 18004; // 方寸山阵容为空
+  FangcunBattleMaxFloor           = 18005; // 达到方寸山的最高层数
+  FangcunBattleFloorNotExist      = 18006; // 方寸山层数不存在
+  FangcunBattleFloorLocked        = 18007; // 方寸山层级尚未解锁
+  FangcunBigRewardNotExist        = 18008; // 方寸山节点奖励不存在
+  FangcunBigRewardReceived        = 18009; // 方寸山节点奖励已被领取
+  FangcunBigRewardFloorMismatch   = 18010; // 方寸山楼层不匹配
+  FangcunScoreRewardNotExist      = 18011; // 方寸山积分奖励不存在
+  FangcunScoreRewardReceived      = 18012; // 方寸山积分奖励已被领取
+  FangcunScoreRewardScoreMismatch = 18013; // 方寸山得分不匹配
+  FangcunAreaNotExist             = 18014; // 方寸山区域不存在
+  FangcunBadBattleResult          = 18015; // 方寸山战斗结果不佳
+
+  // 社交
+  SocialRewardAlready             = 19001; // 奖励已经领取
+  SocialNotExist                  = 19002; // 配置id不存在
+
+  // 注销账户
+  DeleteAccountError              = 20000; // 注销账户失败
+  DeleteAccounting                = 20001; // 正在处理中,请稍后再试
+  RequestRepeated                 = 20002; // 请勿重复操作
+}
+
