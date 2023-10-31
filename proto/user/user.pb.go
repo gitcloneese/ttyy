@@ -24,15 +24,63 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type Sex int32
+
+const (
+	Sex_S_NONE   Sex = 0
+	Sex_S_MAIL   Sex = 1
+	Sex_S_FEMALE Sex = 2
+)
+
+// Enum value maps for Sex.
+var (
+	Sex_name = map[int32]string{
+		0: "S_NONE",
+		1: "S_MAIL",
+		2: "S_FEMALE",
+	}
+	Sex_value = map[string]int32{
+		"S_NONE":   0,
+		"S_MAIL":   1,
+		"S_FEMALE": 2,
+	}
+)
+
+func (x Sex) Enum() *Sex {
+	p := new(Sex)
+	*p = x
+	return p
+}
+
+func (x Sex) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (Sex) Descriptor() protoreflect.EnumDescriptor {
+	return file_proto_user_user_proto_enumTypes[0].Descriptor()
+}
+
+func (Sex) Type() protoreflect.EnumType {
+	return &file_proto_user_user_proto_enumTypes[0]
+}
+
+func (x Sex) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use Sex.Descriptor instead.
+func (Sex) EnumDescriptor() ([]byte, []int) {
+	return file_proto_user_user_proto_rawDescGZIP(), []int{0}
+}
+
 type User struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UserName string  `protobuf:"bytes,1,opt,name=UserName,proto3" json:"UserName,omitempty"`
-	Age      string  `protobuf:"bytes,2,opt,name=Age,proto3" json:"Age,omitempty"`
-	Password *string `protobuf:"bytes,3,opt,name=Password,proto3,oneof" json:"Password,omitempty"`
-	Sex      []bool  `protobuf:"varint,4,rep,packed,name=Sex,proto3" json:"Sex,omitempty"`
+	UserName string `protobuf:"bytes,1,opt,name=UserName,proto3" json:"UserName,omitempty"`
+	Age      int32  `protobuf:"varint,2,opt,name=Age,proto3" json:"Age,omitempty"`
+	Sex      Sex    `protobuf:"varint,3,opt,name=sex,proto3,enum=service.Sex" json:"sex,omitempty"`
 }
 
 func (x *User) Reset() {
@@ -74,25 +122,18 @@ func (x *User) GetUserName() string {
 	return ""
 }
 
-func (x *User) GetAge() string {
+func (x *User) GetAge() int32 {
 	if x != nil {
 		return x.Age
 	}
-	return ""
+	return 0
 }
 
-func (x *User) GetPassword() string {
-	if x != nil && x.Password != nil {
-		return *x.Password
-	}
-	return ""
-}
-
-func (x *User) GetSex() []bool {
+func (x *User) GetSex() Sex {
 	if x != nil {
 		return x.Sex
 	}
-	return nil
+	return Sex_S_NONE
 }
 
 var File_proto_user_user_proto protoreflect.FileDescriptor
@@ -100,15 +141,16 @@ var File_proto_user_user_proto protoreflect.FileDescriptor
 var file_proto_user_user_proto_rawDesc = []byte{
 	0x0a, 0x15, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x75, 0x73, 0x65, 0x72, 0x2f, 0x75, 0x73, 0x65,
 	0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x07, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
-	0x22, 0x74, 0x0a, 0x04, 0x55, 0x73, 0x65, 0x72, 0x12, 0x1a, 0x0a, 0x08, 0x55, 0x73, 0x65, 0x72,
+	0x22, 0x54, 0x0a, 0x04, 0x55, 0x73, 0x65, 0x72, 0x12, 0x1a, 0x0a, 0x08, 0x55, 0x73, 0x65, 0x72,
 	0x4e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x55, 0x73, 0x65, 0x72,
 	0x4e, 0x61, 0x6d, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x41, 0x67, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x03, 0x41, 0x67, 0x65, 0x12, 0x1f, 0x0a, 0x08, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f,
-	0x72, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x48, 0x00, 0x52, 0x08, 0x50, 0x61, 0x73, 0x73,
-	0x77, 0x6f, 0x72, 0x64, 0x88, 0x01, 0x01, 0x12, 0x10, 0x0a, 0x03, 0x53, 0x65, 0x78, 0x18, 0x04,
-	0x20, 0x03, 0x28, 0x08, 0x52, 0x03, 0x53, 0x65, 0x78, 0x42, 0x0b, 0x0a, 0x09, 0x5f, 0x50, 0x61,
-	0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x42, 0x09, 0x5a, 0x07, 0x2e, 0x2e, 0x2f, 0x75, 0x73, 0x65,
-	0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x05, 0x52, 0x03, 0x41, 0x67, 0x65, 0x12, 0x1e, 0x0a, 0x03, 0x73, 0x65, 0x78, 0x18, 0x03, 0x20,
+	0x01, 0x28, 0x0e, 0x32, 0x0c, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x53, 0x65,
+	0x78, 0x52, 0x03, 0x73, 0x65, 0x78, 0x2a, 0x2b, 0x0a, 0x03, 0x53, 0x65, 0x78, 0x12, 0x0a, 0x0a,
+	0x06, 0x53, 0x5f, 0x4e, 0x4f, 0x4e, 0x45, 0x10, 0x00, 0x12, 0x0a, 0x0a, 0x06, 0x53, 0x5f, 0x4d,
+	0x41, 0x49, 0x4c, 0x10, 0x01, 0x12, 0x0c, 0x0a, 0x08, 0x53, 0x5f, 0x46, 0x45, 0x4d, 0x41, 0x4c,
+	0x45, 0x10, 0x02, 0x42, 0x09, 0x5a, 0x07, 0x2e, 0x2e, 0x2f, 0x75, 0x73, 0x65, 0x72, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -123,16 +165,19 @@ func file_proto_user_user_proto_rawDescGZIP() []byte {
 	return file_proto_user_user_proto_rawDescData
 }
 
+var file_proto_user_user_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_proto_user_user_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_proto_user_user_proto_goTypes = []interface{}{
-	(*User)(nil), // 0: service.User
+	(Sex)(0),     // 0: service.Sex
+	(*User)(nil), // 1: service.User
 }
 var file_proto_user_user_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	0, // 0: service.User.sex:type_name -> service.Sex
+	1, // [1:1] is the sub-list for method output_type
+	1, // [1:1] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_proto_user_user_proto_init() }
@@ -154,19 +199,19 @@ func file_proto_user_user_proto_init() {
 			}
 		}
 	}
-	file_proto_user_user_proto_msgTypes[0].OneofWrappers = []interface{}{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_proto_user_user_proto_rawDesc,
-			NumEnums:      0,
+			NumEnums:      1,
 			NumMessages:   1,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_proto_user_user_proto_goTypes,
 		DependencyIndexes: file_proto_user_user_proto_depIdxs,
+		EnumInfos:         file_proto_user_user_proto_enumTypes,
 		MessageInfos:      file_proto_user_user_proto_msgTypes,
 	}.Build()
 	File_proto_user_user_proto = out.File

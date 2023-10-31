@@ -6,9 +6,16 @@ syntax = "proto3";
 option go_package = "../user";
 // 指定文件生成出来的package
 package service;
+
+
+enum Sex {
+  S_NONE = 0;
+  S_MAIL = 1;
+  S_FEMALE = 2;
+}
+
 message User {
   string UserName = 1;
-  string Age = 2;
-  optional string Password = 3;
-  repeated bool Sex = 4;
+  int32 Age = 2;
+  Sex sex = 3;
 }

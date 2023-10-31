@@ -24,9 +24,9 @@ func main0001() {
 
 	//pas := "nhao"
 	t := &user.User{
-		//UserName: "nihao",
-		//Age:      12,
-		//Sex:      []bool{true, false},
+		UserName: "nihao",
+		Age:      12,
+		Sex:      user.Sex_S_FEMALE,
 		//Password: &pas,
 	}
 	b, err := proto.Marshal(t)
