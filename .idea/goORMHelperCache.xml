@@ -3,6 +3,13 @@
   <component name="GoORMHelperCache">
     <option name="schemaMapping">
       <map>
+        <entry key="AchievementSys">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/logic/system/achievement/achievement.go" />
+            </set>
+          </value>
+        </entry>
         <entry key="AttributeValue">
           <value>
             <set>
@@ -21,6 +28,13 @@
           <value>
             <set>
               <option value="file://$PROJECT_DIR$/main.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="effectUnitOrderMap">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/logic/system/lineup/attr.go" />
             </set>
           </value>
         </entry>
@@ -59,7 +73,7 @@
         <entry key="file://$PROJECT_DIR$/main.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1698740788246" />
+              <option name="lastModified" value="1698835351583" />
             </ScannedPath>
           </value>
         </entry>
@@ -85,7 +99,7 @@
         <entry key="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/config/monster/monster.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1698721450603" />
+              <option name="lastModified" value="1698824828586" />
               <option name="schema">
                 <list>
                   <option value="monsterConfig" />
@@ -98,13 +112,51 @@
         <entry key="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/config/monster/monsterAttributeValue.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1698716642555" />
+              <option name="lastModified" value="1698812064103" />
               <option name="schema">
                 <list>
                   <option value="monsterAttributeValueConfig" />
                   <option value="AttributeValue" />
                 </list>
               </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/logic/system/achievement/achievement.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1698825112085" />
+              <option name="schema">
+                <list>
+                  <option value="AchievementSys" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/logic/system/activity/achieve.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1698823470726" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/logic/system/lineup/attr.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1698811467568" />
+              <option name="schema">
+                <list>
+                  <option value="effectUnitOrderMap" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/logic/system/lineup/equipHandler.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1698808047144" />
             </ScannedPath>
           </value>
         </entry>
@@ -115,12 +167,23 @@
             </ScannedPath>
           </value>
         </entry>
+        <entry key="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/model/eventtype.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1698811467500" />
+            </ScannedPath>
+          </value>
+        </entry>
       </map>
     </option>
     <option name="tableStructMapping">
       <map>
+        <entry key="achievement_sys" value="AchievementSys" />
+        <entry key="achievement_syses" value="AchievementSys" />
         <entry key="attribute_value" value="AttributeValue" />
         <entry key="attribute_values" value="AttributeValue" />
+        <entry key="effect_unit_order_map" value="effectUnitOrderMap" />
+        <entry key="effect_unit_order_maps" value="effectUnitOrderMap" />
         <entry key="global_config" value="globalConfig" />
         <entry key="global_configs" value="globalConfig" />
         <entry key="monster" value="Monster" />

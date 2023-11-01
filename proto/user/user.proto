@@ -6,6 +6,7 @@ syntax = "proto3";
 option go_package = "../user";
 // 指定文件生成出来的package
 package service;
+import "google/protobuf/any.proto";
 
 
 enum Sex {
@@ -18,4 +19,15 @@ message User {
   string UserName = 1;
   int32 Age = 2;
   Sex sex = 3;
+  repeated int32 Hours = 4[packed = true];
+  google.protobuf.Any data1 = 5;
+  google.protobuf.Any data2 = 6;
+}
+
+message Test {
+  string TestName = 1;
+}
+
+message Test1 {
+ int32 Age = 1;
 }
