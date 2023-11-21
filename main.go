@@ -10,7 +10,7 @@ import (
 	"ttyy/proto/user"
 )
 
-func main() {
+func main000() {
 
 	//client := v9.NewClient(&v9.Options{
 	//	Addr:     "localhost:6379",
@@ -69,8 +69,7 @@ func main() {
 	//}
 }
 
-func main999() {
-
+func main() {
 	client := v9.NewClient(&v9.Options{
 		Addr:     "localhost:6379",
 		Password: "", // no password set
@@ -81,14 +80,7 @@ func main999() {
 		log.Println(err)
 		return
 	}
-	b, err2 := client.Get(context.Background(), "test").Bytes()
-	if err2 != nil {
-		log.Println(err2)
-		return
-	}
-	t1 := new(user.User)
-	err3 := proto.Unmarshal(b, t1)
-	if err3 != nil {
-		log.Println(err3)
-	}
+	b, err2 := client.Get(context.Background(), "test00000").Result()
+	log.Println(err2)
+	log.Println(b)
 }

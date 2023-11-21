@@ -3,6 +3,34 @@
   <component name="GoORMHelperCache">
     <option name="schemaMapping">
       <map>
+        <entry key="AccountHTTPClientImpl">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/account/api_http.pb.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="AccountRole">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/account/account.pb.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="AccountRoleListReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/account/account.pb.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="AccountRoleListRsp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/account/account.pb.go" />
+            </set>
+          </value>
+        </entry>
         <entry key="AchievementSys">
           <value>
             <set>
@@ -10,52 +38,199 @@
             </set>
           </value>
         </entry>
-        <entry key="AttributeValue">
+        <entry key="GMSys">
           <value>
             <set>
-              <option value="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/config/monster/monsterAttributeValue.go" />
+              <option value="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/logic/system/gm/gm.go" />
             </set>
           </value>
         </entry>
-        <entry key="Monster">
+        <entry key="GetPlayerHeroInfoReq">
           <value>
             <set>
-              <option value="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/config/monster/monster.go" />
+              <option value="file://$PROJECT_DIR$/account/account.pb.go" />
             </set>
           </value>
         </entry>
-        <entry key="TestProto">
+        <entry key="GetPlayerHeroInfoRsp">
           <value>
             <set>
-              <option value="file://$PROJECT_DIR$/main.go" />
+              <option value="file://$PROJECT_DIR$/account/account.pb.go" />
             </set>
           </value>
         </entry>
-        <entry key="effectUnitOrderMap">
+        <entry key="GetPlayerInfoReq">
           <value>
             <set>
-              <option value="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/logic/system/lineup/attr.go" />
+              <option value="file://$PROJECT_DIR$/account/account.pb.go" />
             </set>
           </value>
         </entry>
-        <entry key="globalConfig">
+        <entry key="GetPlayerInfoRsp">
           <value>
             <set>
-              <option value="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/config/global/global.go" />
+              <option value="file://$PROJECT_DIR$/account/account.pb.go" />
             </set>
           </value>
         </entry>
-        <entry key="monsterAttributeValueConfig">
+        <entry key="HelloReq">
           <value>
             <set>
-              <option value="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/config/monster/monsterAttributeValue.go" />
+              <option value="file://$PROJECT_DIR$/account/account.pb.go" />
             </set>
           </value>
         </entry>
-        <entry key="monsterConfig">
+        <entry key="HelloResp">
           <value>
             <set>
-              <option value="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/config/monster/monster.go" />
+              <option value="file://$PROJECT_DIR$/account/account.pb.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="HeroInfo">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/account/account.pb.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="KickPlayerReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/account/account.pb.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="KickPlayerRsp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/account/account.pb.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="LockAccountReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/account/account.pb.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="LockAccountRsp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/account/account.pb.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="LockItem">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/account/account.pb.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="LockListReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/account/account.pb.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="LockListRsp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/account/account.pb.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="MailSys">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/logic/system/mail/mail.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PlatformService">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../work/xy3-server/platform/internal/service/platform.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Player">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/account/account.pb.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="ServerPlayerNum">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/account/account.pb.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Service">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../work/xy3-server/login/internal/service/service.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Test">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/proto/user/user.pb.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Test1">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/proto/user/user.pb.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UnimplementedAccountServer">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/account/api_grpc.pb.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/proto/user/user.pb.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserDisableReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/account/account.pb.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserDisableRsp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/account/account.pb.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="accountClient">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/account/api_grpc.pb.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="tokenUser">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../work/xy3-server/core/dao/login/token.go" />
             </set>
           </value>
         </entry>
@@ -63,6 +238,112 @@
     </option>
     <option name="scannedPathMapping">
       <map>
+        <entry key="file://$PROJECT_DIR$/account/account.pb.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1698232003232" />
+              <option name="schema">
+                <list>
+                  <option value="HelloReq" />
+                  <option value="HelloResp" />
+                  <option value="AccountRole" />
+                  <option value="ServerPlayerNum" />
+                  <option value="AccountRoleListReq" />
+                  <option value="AccountRoleListRsp" />
+                  <option value="UserDisableReq" />
+                  <option value="UserDisableRsp" />
+                  <option value="LockAccountReq" />
+                  <option value="LockAccountRsp" />
+                  <option value="LockListReq" />
+                  <option value="LockItem" />
+                  <option value="LockListRsp" />
+                  <option value="KickPlayerReq" />
+                  <option value="KickPlayerRsp" />
+                  <option value="GetPlayerInfoReq" />
+                  <option value="GetPlayerInfoRsp" />
+                  <option value="Player" />
+                  <option value="GetPlayerHeroInfoReq" />
+                  <option value="HeroInfo" />
+                  <option value="GetPlayerHeroInfoRsp" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/account/api.pb.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1698232003751" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/account/api_grpc.pb.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1698232003751" />
+              <option name="schema">
+                <list>
+                  <option value="accountClient" />
+                  <option value="UnimplementedAccountServer" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/account/api_http.pb.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1698232003752" />
+              <option name="schema">
+                <list>
+                  <option value="AccountHTTPClientImpl" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/account/client.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1698305719953" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/errcode/ecode.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1689564367733" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/errcode/err_ecode.ecode.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1698285411381" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/errcode/err_ecode.pb.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1698285393670" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/errcode/web_ecode.ecode.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1692873864594" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/errcode/web_ecode.pb.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1698285424315" />
+            </ScannedPath>
+          </value>
+        </entry>
         <entry key="file://$PROJECT_DIR$/generate.go">
           <value>
             <ScannedPath>
@@ -73,50 +354,69 @@
         <entry key="file://$PROJECT_DIR$/main.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1698835351583" />
+              <option name="lastModified" value="1700533437490" />
             </ScannedPath>
           </value>
         </entry>
-        <entry key="file://$PROJECT_DIR$/../work/xy3-server/platform/internal/data/account.go">
+        <entry key="file://$PROJECT_DIR$/proto/user/user.pb.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1698724673798" />
-            </ScannedPath>
-          </value>
-        </entry>
-        <entry key="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/config/global/global.go">
-          <value>
-            <ScannedPath>
-              <option name="lastModified" value="1698660583447" />
+              <option name="lastModified" value="1698834802633" />
               <option name="schema">
                 <list>
-                  <option value="globalConfig" />
+                  <option value="User" />
+                  <option value="Test" />
+                  <option value="Test1" />
                 </list>
               </option>
             </ScannedPath>
           </value>
         </entry>
-        <entry key="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/config/monster/monster.go">
+        <entry key="file://$PROJECT_DIR$/../work/xy3-server/core/dao/interface.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1698824828586" />
+              <option name="lastModified" value="1700471996146" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../work/xy3-server/core/dao/login/token.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1700534550231" />
               <option name="schema">
                 <list>
-                  <option value="monsterConfig" />
-                  <option value="Monster" />
+                  <option value="tokenUser" />
                 </list>
               </option>
             </ScannedPath>
           </value>
         </entry>
-        <entry key="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/config/monster/monsterAttributeValue.go">
+        <entry key="file://$PROJECT_DIR$/../work/xy3-server/core/dao/scene/player.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1698812064103" />
+              <option name="lastModified" value="1700472069082" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../work/xy3-server/login/internal/service/service.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1700534550138" />
               <option name="schema">
                 <list>
-                  <option value="monsterAttributeValueConfig" />
-                  <option value="AttributeValue" />
+                  <option value="Service" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../work/xy3-server/platform/internal/service/platform.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1700531364572" />
+              <option name="schema">
+                <list>
+                  <option value="PlatformService" />
                 </list>
               </option>
             </ScannedPath>
@@ -125,7 +425,7 @@
         <entry key="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/logic/system/achievement/achievement.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1698825112085" />
+              <option name="lastModified" value="1700453287148" />
               <option name="schema">
                 <list>
                   <option value="AchievementSys" />
@@ -134,43 +434,34 @@
             </ScannedPath>
           </value>
         </entry>
-        <entry key="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/logic/system/activity/achieve.go">
+        <entry key="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/logic/system/achievement/detection.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1698823470726" />
+              <option name="lastModified" value="1700478746419" />
             </ScannedPath>
           </value>
         </entry>
-        <entry key="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/logic/system/lineup/attr.go">
+        <entry key="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/logic/system/gm/gm.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1698811467568" />
+              <option name="lastModified" value="1700473496013" />
               <option name="schema">
                 <list>
-                  <option value="effectUnitOrderMap" />
+                  <option value="GMSys" />
                 </list>
               </option>
             </ScannedPath>
           </value>
         </entry>
-        <entry key="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/logic/system/lineup/equipHandler.go">
+        <entry key="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/logic/system/mail/mail.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1698808047144" />
-            </ScannedPath>
-          </value>
-        </entry>
-        <entry key="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/logic/system/lineup/fairywareHandler.go">
-          <value>
-            <ScannedPath>
-              <option name="lastModified" value="1698660931559" />
-            </ScannedPath>
-          </value>
-        </entry>
-        <entry key="file://$PROJECT_DIR$/../work/xy3-server/scene/internal/model/eventtype.go">
-          <value>
-            <ScannedPath>
-              <option name="lastModified" value="1698811467500" />
+              <option name="lastModified" value="1700470841579" />
+              <option name="schema">
+                <list>
+                  <option value="MailSys" />
+                </list>
+              </option>
             </ScannedPath>
           </value>
         </entry>
@@ -178,24 +469,74 @@
     </option>
     <option name="tableStructMapping">
       <map>
+        <entry key="account_client" value="accountClient" />
+        <entry key="account_clients" value="accountClient" />
+        <entry key="account_http_client_impl" value="AccountHTTPClientImpl" />
+        <entry key="account_http_client_impls" value="AccountHTTPClientImpl" />
+        <entry key="account_role" value="AccountRole" />
+        <entry key="account_role_list_req" value="AccountRoleListReq" />
+        <entry key="account_role_list_reqs" value="AccountRoleListReq" />
+        <entry key="account_role_list_rsp" value="AccountRoleListRsp" />
+        <entry key="account_role_list_rsps" value="AccountRoleListRsp" />
+        <entry key="account_roles" value="AccountRole" />
         <entry key="achievement_sys" value="AchievementSys" />
         <entry key="achievement_syses" value="AchievementSys" />
-        <entry key="attribute_value" value="AttributeValue" />
-        <entry key="attribute_values" value="AttributeValue" />
-        <entry key="effect_unit_order_map" value="effectUnitOrderMap" />
-        <entry key="effect_unit_order_maps" value="effectUnitOrderMap" />
-        <entry key="global_config" value="globalConfig" />
-        <entry key="global_configs" value="globalConfig" />
-        <entry key="monster" value="Monster" />
-        <entry key="monster_attribute_value_config" value="monsterAttributeValueConfig" />
-        <entry key="monster_attribute_value_configs" value="monsterAttributeValueConfig" />
-        <entry key="monster_config" value="monsterConfig" />
-        <entry key="monster_configs" value="monsterConfig" />
-        <entry key="monsters" value="Monster" />
-        <entry key="test_proto" value="TestProto" />
-        <entry key="test_protoes" value="TestProto" />
+        <entry key="g_m_sys" value="GMSys" />
+        <entry key="g_m_syses" value="GMSys" />
+        <entry key="get_player_hero_info_req" value="GetPlayerHeroInfoReq" />
+        <entry key="get_player_hero_info_reqs" value="GetPlayerHeroInfoReq" />
+        <entry key="get_player_hero_info_rsp" value="GetPlayerHeroInfoRsp" />
+        <entry key="get_player_hero_info_rsps" value="GetPlayerHeroInfoRsp" />
+        <entry key="get_player_info_req" value="GetPlayerInfoReq" />
+        <entry key="get_player_info_reqs" value="GetPlayerInfoReq" />
+        <entry key="get_player_info_rsp" value="GetPlayerInfoRsp" />
+        <entry key="get_player_info_rsps" value="GetPlayerInfoRsp" />
+        <entry key="hello_req" value="HelloReq" />
+        <entry key="hello_reqs" value="HelloReq" />
+        <entry key="hello_resp" value="HelloResp" />
+        <entry key="hello_resps" value="HelloResp" />
+        <entry key="hero_info" value="HeroInfo" />
+        <entry key="hero_infoes" value="HeroInfo" />
+        <entry key="kick_player_req" value="KickPlayerReq" />
+        <entry key="kick_player_reqs" value="KickPlayerReq" />
+        <entry key="kick_player_rsp" value="KickPlayerRsp" />
+        <entry key="kick_player_rsps" value="KickPlayerRsp" />
+        <entry key="lock_account_req" value="LockAccountReq" />
+        <entry key="lock_account_reqs" value="LockAccountReq" />
+        <entry key="lock_account_rsp" value="LockAccountRsp" />
+        <entry key="lock_account_rsps" value="LockAccountRsp" />
+        <entry key="lock_item" value="LockItem" />
+        <entry key="lock_items" value="LockItem" />
+        <entry key="lock_list_req" value="LockListReq" />
+        <entry key="lock_list_reqs" value="LockListReq" />
+        <entry key="lock_list_rsp" value="LockListRsp" />
+        <entry key="lock_list_rsps" value="LockListRsp" />
+        <entry key="mail_sys" value="MailSys" />
+        <entry key="mail_syses" value="MailSys" />
+        <entry key="platform_service" value="PlatformService" />
+        <entry key="platform_services" value="PlatformService" />
+        <entry key="player" value="Player" />
+        <entry key="players" value="Player" />
+        <entry key="server_player_num" value="ServerPlayerNum" />
+        <entry key="server_player_nums" value="ServerPlayerNum" />
+        <entry key="service" value="Service" />
+        <entry key="services" value="Service" />
+        <entry key="test" value="Test" />
+        <entry key="test1" value="Test1" />
+        <entry key="test1s" value="Test1" />
+        <entry key="tests" value="Test" />
+        <entry key="token_user" value="tokenUser" />
+        <entry key="token_users" value="tokenUser" />
+        <entry key="unimplemented_account_server" value="UnimplementedAccountServer" />
+        <entry key="unimplemented_account_servers" value="UnimplementedAccountServer" />
+        <entry key="user" value="User" />
+        <entry key="user_disable_req" value="UserDisableReq" />
+        <entry key="user_disable_reqs" value="UserDisableReq" />
+        <entry key="user_disable_rsp" value="UserDisableRsp" />
+        <entry key="user_disable_rsps" value="UserDisableRsp" />
+        <entry key="users" value="User" />
       </map>
     </option>
-    <option name="lastTimeChecked" value="1698660439913" />
+    <option name="lastTimeChecked" value="1700450514396" />
   </component>
 </project>
